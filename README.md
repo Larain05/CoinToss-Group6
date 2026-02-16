@@ -85,35 +85,35 @@ This script aggregates data by surface type. It compares the results of flips pe
 
 <td><img src="assets/canvass_8.gif" width="300">
 
-<sub>1A (Tiles)</sub></td>
+<sub>20 (Wood)</sub></td>
 
 <td><img src="assets/canvass_9.gif" width="300">
 
-<sub>1B (Tiles)</sub></td>
+<sub>1A (Tiles)</sub></td>
 
 </tr>
 <tr>
 <td><img src="assets/canvass_10.gif" width="300">
 
-<sub>5A (Tiles)</sub></td>
+<sub>1B (Tiles)</sub></td>
 
 <td><img src="assets/canvass_11.gif" width="300">
 
-<sub>5B (Tiles)</sub></td>
+<sub>5A (Tiles)</sub></td>
 
 <td><img src="assets/canvass_12.gif" width="300">
 
-<sub>10A (Tiles)</sub></td>
+<sub>5B (Tiles)</sub></td>
 
 </tr>
 <tr>
 <td><img src="assets/canvass_13.gif" width="300">
 
-<sub>10B (Tiles)</sub></td>
+<sub>10A (Tiles)</sub></td>
 
 <td><img src="assets/canvass_14.gif" width="300">
 
-<sub>20 (Wood)</sub></td>
+<sub>10B (Tiles)</sub></td>
 
 <td><img src="assets/canvass_15.gif" width="300">
 
