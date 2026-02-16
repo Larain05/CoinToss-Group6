@@ -1,5 +1,4 @@
 import matplotlib
-# Force standard GUI backend to prevent "invalid command" errors
 matplotlib.use('TkAgg') 
 
 import matplotlib.pyplot as plt
@@ -8,9 +7,9 @@ from matplotlib.widgets import Button
 import numpy as np
 import theme
 
-# =========================
-# 1. THE DATA
-# =========================
+
+#THE DATA
+
 groups_data = {
     "Group 1": {
         "1B": [0,1,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,1,1,1,0,1,0,0,0,0,0,1,1,0,0,1,1,0,1,0,1,1,0,0,1,1,1,1,1,1,1,0,1,0,0,1,1,1,0,0,0,1,0,0,1,0,1,1,1,0,1,1,1,1,0,1,0,1,1,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,1,1,0,1,1,0,1],
@@ -18,7 +17,8 @@ groups_data = {
     },
     "Group 2": {
         "5A": [1,1,1,0,0,1,1,1,0,1,0,1,0,0,1,0,0,0,0,0,1,1,1,1,0,1,0,1,0,1,1,0,1,1,0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,1,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,0,1,1,1,1,0,0,1,1,0,0,1,0,0,1,1,1,0,1,0,1,1,1,0,0,0,1,0,0,0,1,0,1,0,1],
-        "1B": [0,0,1,0,1,1,1,0,0,0,1,0,0,0,1,1,1,1,1,0,1,1,0,0,1,0,1,0,1,0,0,0,0,1,1,1,1,1,0,0,0,1,0,1,1,1,0,0,1,0,0,1,0,1,1,1,0,1,1,0,1,0,0,0,1,1,0,1,0,1,0,1,0,0,1,0,1,1,0,1,1,0,0,1,0,1,0,0,0,1,1,0,1,0,1,1,1,0,1,0,0]
+        "1B": [0,0,1,0,1,1,1,0,0,0,1,0,0,0,1,1,1,1,1,0,1,1,0,0,1,0,1,0,1,0,0,0,0,1,1,1,1,1,0,0,0,1,0,1,1,1,0,0,1,0,0,1,0,1,1,1,0,1,1,0,1,0,0,0,1,1,0,1,0,1,0,1,0,0,1,0,1,1,0,1,1,0,0,1,0,1,0,0,0,1,1,0,1,0,1,1,1,0,1,0]
+
     },
     "Group 3": {
         "10A": [0,0,1,0,1,1,0,1,1,0,0,0,0,0,1,0,1,1,0,0,1,0,1,1,1,1,0,1,1,1,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,0,0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,0,0],
@@ -38,7 +38,7 @@ groups_data = {
     },
     "Group 7": {
         "10A": [1,1,0,1,0,0,0,0,1,1,0,0,1,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,1,0,0,0,1,0,1,1,0,1,1,0,0,1,1,0,1,0,0,1,1,0,0,0,1,0,1,0,0,1,1,1,0,0,1,1,0,0,1,1,0,0,0,1,0,1,0,0,1,0,1,0,0,1,0,0,0,0,1,1,1,1,0],
-        "5A": [1,0,1,0,1,1,0,0,1,1,0,1,1,1,0,0,0,1,0,1,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,1,0,0,1,0,0,1,1,1,1,0,0,1,1,0,1,1,1,1,0,1,1,0,1,0,0,1,1,0,1,0,0,0,0,1,1,1,1,0,1,0,0,1,0,0,1,0,1,0,1,0,1,0,1,1,1]
+        "5A": [1,0,1,0,1,1,0,0,1,1,0,1,1,1,0,0,0,1,0,1,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,1,0,0,1,0,0,1,1,1,1,0,0,1,1,0,1,1,1,1,0,1,1,0,1,0,0,1,1,0,1,0,0,0,0,1,1, 1,1,0,1,0,0,1,0,0,1,0,1,0,1,0,1,0,1,1,1]
     },
     "Group 8": {
         "10B": [0,1,0,1,0,0,1,0,0,1,0,1,1,1,0,1,1,1,1,0,1,0,1,0,0,1,0,1,0,0,0,1,1,1,0,0,1,0,0,1,0,1,1,0,0,1,1,1,0,1,1,1,0,0,1,0,0,1,0,0,0,1,0,1,0,1,0,1,1,0,0,1,1,0,1,1,1,0,1,1,1,1,0,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1],
@@ -75,9 +75,7 @@ groups_data = {
     }
 }
 
-# =========================
 # PROCESS DATA
-# =========================
 coin_order = ["1A", "1B", "2", "5A", "5B", "10A", "10B", "20"]
 combined_data = {coin: [] for coin in coin_order}
 all_flips = []
@@ -94,19 +92,17 @@ for coin in coin_order:
     if len(combined_data[coin]) > 0:
         datasets.append((f"{coin} Coin - Cumulative", combined_data[coin]))
 
-# Append Canvas Summaries (ONLY ALL COMBINED, NO WOOD/TILES)
+
 datasets.append(("ALL COINS COMBINED", all_flips))
 
-# =========================
-# 2. THE ANIMATION CLASS
-# =========================
 
+#THE ANIMATION CLASS
 class CoinAnimator:
     def __init__(self, datasets):
         self.datasets = datasets
         self.index = 0
         
-        # Load Theme
+        #Load Theme
         self.style = theme.THEME
         
         plt.ioff()
@@ -118,7 +114,7 @@ class CoinAnimator:
         self.ani = None 
         self.fig.canvas.mpl_connect('key_press_event', self.on_key)
 
-        # BUTTONS
+        #BUTTONS
         ax_prev = plt.axes([0.2, 0.05, 0.15, 0.075])
         self.btn_prev = Button(ax_prev, '< Prev', color=self.style["btn_color"], hovercolor=self.style["btn_hover"])
         self.btn_prev.label.set_color(self.style["tails_color"])
@@ -151,7 +147,6 @@ class CoinAnimator:
         lineT.set_data(trials[:frame], cumT[:frame])
         
         if frame > 0:
-            # FIX: Clamp index to prevent crash at end of animation
             safe_idx = min(frame - 1, len(trials) - 1)
             markerH.set_data([trials[safe_idx]], [cumH[safe_idx]])
             markerT.set_data([trials[safe_idx]], [cumT[safe_idx]])
@@ -176,13 +171,13 @@ class CoinAnimator:
         self.ax.set_xlim(0, max_val)
         self.ax.set_ylim(0, max_val)
         
-        # Dynamic Ticks
+        #Dynamic Ticks
         step = max(1, max_val // 10)
         self.ax.set_xticks(range(0, max_val + 1, step))
         self.ax.set_yticks(range(0, max_val + 1, step))
         self.ax.tick_params(colors=self.style["text_color"], rotation=45)
         
-        # Titles & Labels (CENTERED)
+        #Titles & Labels (CENTERED)
         self.ax.set_title(f"{title} ({self.index + 1}/{len(self.datasets)})", 
                           fontsize=15, fontweight='bold', color=self.style["title_color"], loc='center')
         self.ax.set_xlabel("Trials", color=self.style["text_color"])
@@ -202,7 +197,7 @@ class CoinAnimator:
         for text in legend.get_texts():
             text.set_color(self.style["text_color"])
         
-        # TURBO MODE: Skip frames for large datasets
+        #Skip frames for large datasets
         frame_step = max(2, len(H_list) // 50) 
         fast_frames = range(0, len(H_list) + frame_step, frame_step) 
         
@@ -237,15 +232,11 @@ class CoinAnimator:
         elif event.key == ' ':
             self.replay_graph()
 
-# =========================
-# 3. RUN IT
-# =========================
-
 if __name__ == "__main__":
     print("Controls: Click buttons or use LEFT/RIGHT keys.")
     viewer = CoinAnimator(datasets)
 
-    # PRINT TOTALS
+    #PRINT TOTALS
     print(f"\n===== ALL COINS COMBINED =====")
     print(f"Total Flips: {len(all_flips)}")
     print(f"Total Heads: {sum(all_flips)}")
