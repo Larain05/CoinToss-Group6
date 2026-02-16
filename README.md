@@ -1,32 +1,34 @@
 # Coin Flip Bias & Probability Analysis
 
-**Course:** CSElec 01: Computational Science  
+# Coin Toss Probability and Surface Analysis
+
+**Course:** CSElec 01: Computational Science
+
 **Activity:** Coin Toss Probability Simulation
 
-This project analyzes the probability of coin flips (Heads vs. Tails) to test for physical bias. We compared two variables—**coin mass** (5-Peso vs. 20-Peso) and **surface friction** (Wood vs. Tile)—to see if they affect the theoretical 50/50 outcome.
+This project analyzes the probability of coin flips to test for physical bias. We compared two specific variables, coin mass (5-Peso vs. 20-Peso) and surface friction (Wood vs. Tile), to observe their effect on the theoretical 50/50 outcome.
 
-The main goal is to visualize the **Law of Large Numbers**: observing how the probability stabilizes as the sample size grows from a single group ($N=200$) to the full class dataset ($N \approx 3000$).
+The primary objective is to visualize the Law of Large Numbers. We observe how experimental probability stabilizes as the sample size increases from a single group () to the full class dataset ().
 
 ## 👥 Group Members
 
-- **Muhammed Shariff Sumagka**
-- **Lara Rain Fuentes**
-- **Gerard Carl Palma**
+- Muhammed Shariff Sumagka
+- Lara Rain Fuentes
+- Gerard Carl Palma
 
-## 🧪 Experiment
+## 🧪 Experiment Objectives
 
-We collected binary data (Heads=1, Tails=0) across 15 groups to test three things:
+We collected binary data (Heads=1, Tails=0) across 15 groups to analyze the following:
 
-1.  **Coin Bias:** Does the heavier 20-Peso coin land differently than the 5-Peso coin?
-2.  **Surface Bias:** Does the high damping of wood vs. the restitution of tiles change the outcome?
-3.  **Convergence:** Does the Head/Tail ratio actually settle at 0.5 over time?
+1. **Coin Bias:** Testing if the heavier 20-Peso coin lands differently than the 5-Peso coin.
+2. **Surface Bias:** Testing if the damping of wood versus the restitution of tiles changes the outcome.
+3. **Convergence:** Observing if the Head/Tail ratio settled at 0.5 as the number of trials increased.
 
-## 📂 Files & Visualizations
+## 📂 Files and Visualizations
 
-### 1. Group 6 Analysis (`group6.py`)
+### 1. Group H & T (`group6.py`)
 
-Analyzes our specific group data, comparing 100 flips of a 5-Peso coin vs. a 20-Peso coin on a Wood surface.
-![Group 6 Animation]
+This script analyzes our specific group data. It compares 100 flips of a 5-Peso coin against 100 flips of a 20-Peso coin on a Wood surface.
 
 <table>
 <tr>
@@ -44,37 +46,37 @@ Analyzes our specific group data, comparing 100 flips of a 5-Peso coin vs. a 20-
 
 </tr>
 </table>
-Importan
 
-### 2. Surface Comparison (`compare_surfaces.py`)
+### 2. Canvass H & T (`canvass.py`)
 
-Aggregates data by surface type to compare the behavior of Wood (Groups 1–8) against Tiles (Groups 9–15).
-![Surface Comparison Animation](assets/surfaces.gif)
+This script aggregates data by surface type. It compares the results of flips performed on Wood (Groups 1 to 8) against those performed on Tiles (Groups 9 to 15).
 
-### 3. Global Convergence (`all.py`)
+### 3. All H & T (`all.py`)
 
-Combines all 3100 data points from all 15 groups to demonstrate the final convergence of the Law of Large Numbers.
-![Global Convergence Animation](assets/all_data.gif)
+This script combines every flip from all 15 groups. It demonstrates the final convergence of the Law of Large Numbers using the complete dataset of 3100 points.
 
-## 🚀 How to Run
+## 🚀 Installation and Usage
 
-1.  **Install dependencies:**
+1. **Install dependencies:**
 
-    ```bash
-    pip install matplotlib numpy
-    ```
+```bash
+pip install matplotlib numpy
 
-2.  **Run the scripts:**
-    ```bash
-    python group6.py
-    python compare_surfaces.py
-    python all.py
-    ```
+```
+
+2. **Run the scripts:**
+
+```bash
+python group6.py
+python canvass.py
+python all.py
+
+```
 
 ## 🎮 Controls
 
-The graph window is interactive:
+The visualization window is interactive for easier data inspection:
 
-- **Right Arrow (→)**: Next dataset.
-- **Left Arrow (←)**: Previous dataset.
-- **Replay ↻**: Restart the simulation to watch the trend form again.
+- **Right Arrow (→):** Switch to the next dataset.
+- **Left Arrow (←):** Switch to the previous dataset.
+- **Replay ↻ Button:** Restart the simulation to watch the cumulative trend form again.
