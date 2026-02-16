@@ -6,9 +6,6 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.widgets import Button
 import numpy as np
-
-# Import your theme file
-# NOTE: Ensure theme.py is inside the 'graphs' folder and you are running from the parent directory.
 import theme
 
 # =========================
@@ -109,10 +106,9 @@ class CoinAnimator:
         self.datasets = datasets
         self.index = 0
         
-        # Load Theme from the other file
+        # Load Theme
         self.style = theme.THEME
         
-        # Turn interactive mode OFF
         plt.ioff()
         
         self.fig, self.ax = plt.subplots(figsize=(10, 6))
@@ -155,8 +151,10 @@ class CoinAnimator:
         lineT.set_data(trials[:frame], cumT[:frame])
         
         if frame > 0:
-            markerH.set_data([trials[frame-1]], [cumH[frame-1]])
-            markerT.set_data([trials[frame-1]], [cumT[frame-1]])
+            # FIX: Clamp index to prevent crash at end of animation
+            safe_idx = min(frame - 1, len(trials) - 1)
+            markerH.set_data([trials[safe_idx]], [cumH[safe_idx]])
+            markerT.set_data([trials[safe_idx]], [cumT[safe_idx]])
             
         return lineH, lineT, markerH, markerT
 
@@ -174,8 +172,15 @@ class CoinAnimator:
         cumH, cumT = self.cumulative(H_list)
         trials = list(range(1, len(H_list) + 1))
         
-        self.ax.set_xlim(0, len(H_list))
-        self.ax.set_ylim(0, len(H_list))
+        max_val = len(H_list)
+        self.ax.set_xlim(0, max_val)
+        self.ax.set_ylim(0, max_val)
+        
+        # Dynamic Ticks
+        step = max(1, max_val // 10)
+        self.ax.set_xticks(range(0, max_val + 1, step))
+        self.ax.set_yticks(range(0, max_val + 1, step))
+        self.ax.tick_params(colors=self.style["text_color"], rotation=45)
         
         # Titles & Labels (CENTERED)
         self.ax.set_title(f"{title} ({self.index + 1}/{len(self.datasets)})", 
@@ -184,7 +189,6 @@ class CoinAnimator:
         self.ax.set_ylabel("Cumulative Count", color=self.style["text_color"])
         
         self.ax.grid(True, linestyle='--', alpha=0.3, color=self.style["grid_color"])
-        self.ax.tick_params(colors=self.style["text_color"])
         for spine in self.ax.spines.values():
             spine.set_edgecolor(self.style["spine_color"])
         
@@ -198,7 +202,9 @@ class CoinAnimator:
         for text in legend.get_texts():
             text.set_color(self.style["text_color"])
         
-        fast_frames = range(0, len(H_list) + 5, 5) 
+        # TURBO MODE: Skip frames for large datasets
+        frame_step = max(2, len(H_list) // 50) 
+        fast_frames = range(0, len(H_list) + frame_step, frame_step) 
         
         self.ani = FuncAnimation(
             self.fig, 
@@ -228,18 +234,21 @@ class CoinAnimator:
             self.next_graph()
         elif event.key == 'left':
             self.prev_graph()
+        elif event.key == ' ':
+            self.replay_graph()
 
 # =========================
 # 3. RUN IT
 # =========================
 
-print("Controls: Click buttons or use LEFT/RIGHT keys.")
-viewer = CoinAnimator(datasets)
+if __name__ == "__main__":
+    print("Controls: Click buttons or use LEFT/RIGHT keys.")
+    viewer = CoinAnimator(datasets)
 
-# PRINT TOTALS (Only All Combined)
-print(f"\n===== ALL COINS COMBINED =====")
-print(f"Total Flips: {len(all_flips)}")
-print(f"Total Heads: {sum(all_flips)}")
-print(f"Total Tails: {len(all_flips) - sum(all_flips)}")
+    # PRINT TOTALS
+    print(f"\n===== ALL COINS COMBINED =====")
+    print(f"Total Flips: {len(all_flips)}")
+    print(f"Total Heads: {sum(all_flips)}")
+    print(f"Total Tails: {len(all_flips) - sum(all_flips)}")
 
-plt.show(block=True)
+    plt.show(block=True)

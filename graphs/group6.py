@@ -165,6 +165,8 @@ class CoinAnimator:
             self.next_graph()
         elif event.key == 'left':
             self.prev_graph()
+        elif event.key == ' ':
+            self.replay_graph()
 
 # =========================
 # 3. RUN IT

@@ -26,7 +26,25 @@ We collected binary data (Heads=1, Tails=0) across 15 groups to test three thing
 ### 1. Group 6 Analysis (`group6.py`)
 
 Analyzes our specific group data, comparing 100 flips of a 5-Peso coin vs. a 20-Peso coin on a Wood surface.
-![Group 6 Animation](assets/group6.gif)
+![Group 6 Animation]
+
+<table>
+<tr>
+<td><img src="assets/group6_5p.gif" width="300">
+
+<sub>5-Peso (Wood)</sub></td>
+
+<td><img src="assets/group6_20p.gif" width="300">
+
+<sub>20-Peso (Wood)</sub></td>
+
+<td><img src="assets/group6_compare.gif" width="300">
+
+<sub>Comparative Analysis</sub></td>
+
+</tr>
+</table>
+Importan
 
 ### 2. Surface Comparison (`compare_surfaces.py`)
 
@@ -35,7 +53,7 @@ Aggregates data by surface type to compare the behavior of Wood (Groups 1–8) a
 
 ### 3. Global Convergence (`all.py`)
 
-Combines all 3000+ data points from all 15 groups to demonstrate the final convergence of the Law of Large Numbers.
+Combines all 3100 data points from all 15 groups to demonstrate the final convergence of the Law of Large Numbers.
 ![Global Convergence Animation](assets/all_data.gif)
 
 ## 🚀 How to Run
